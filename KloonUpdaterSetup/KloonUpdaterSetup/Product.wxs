@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="*" Name="KloonUpdaterSetup" Language="1033" Version="1.0.0.0" Manufacturer="" UpgradeCode="1d9114c6-5f74-458b-ae28-f9e2bb692e1b">
+	<Product Id="*" Name="Kloon Updater Setup" Language="1033" Version="1.0.0.0" Manufacturer="Kloon" UpgradeCode="1d9114c6-5f74-458b-ae28-f9e2bb692e1b">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
 		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
@@ -8,13 +8,16 @@
 
 		<Feature Id="ProductFeature" Title="KloonUpdaterSetup" Level="1">
 			<ComponentGroupRef Id="ProductComponents" />
+			<ComponentGroupRef Id="MyComponentGroup" />
 		</Feature>
 	</Product>
 
 	<Fragment>
 		<Directory Id="TARGETDIR" Name="SourceDir">
-			<Directory Id="ProgramFilesFolder">
-				<Directory Id="INSTALLFOLDER" Name="KloonUpdaterSetup" />
+			<Directory Id="ProgramFiles64Folder">
+				<Directory Id="CompanyFolder" Name="Kloon">
+					<Directory Id="INSTALLFOLDER" Name="Updater" />
+				</Directory>
 			</Directory>
 		</Directory>
 	</Fragment>
