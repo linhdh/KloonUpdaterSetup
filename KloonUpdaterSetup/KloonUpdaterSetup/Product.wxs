@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="*" Name="Kloon Updater Setup" Language="1033" Version="1.0.0.0" Manufacturer="Kloon" UpgradeCode="1d9114c6-5f74-458b-ae28-f9e2bb692e1b">
+	<Product Id="*" Name="Kloon Updater" Language="1033" Version="1.3.21" Manufacturer="Kloon" UpgradeCode="1d9114c6-5f74-458b-ae28-f9e2bb692e1b">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+		<UIRef Id="WixUI_InstallDir" />
+		<Property Id="ApplicationFolderName" Value="Updater"></Property>
+		<Property Id="WixAppFolder" Value="WixPerMachineFolder"></Property>
+		<Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER"></Property>
 
 		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
 		<MediaTemplate />
@@ -25,9 +29,11 @@
 	<Fragment>
 		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
 			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
-			<!-- <Component Id="ProductComponent"> -->
+			<Component Id="ProductComponent">
 				<!-- TODO: Insert files, registry keys, and other resources here. -->
-			<!-- </Component> -->
+				<ServiceInstall Id="ServiceInstaller" Type="ownProcess" Name="Kloon Updater" DisplayName="Kloon Updater" Description="This Windows service help update Kloon Application" Start="auto" ErrorControl="normal"></ServiceInstall>
+				<ServiceControl Id="StartService" Start="install" Stop="both" Remove="uninstall" Name="Kloon Updater" Wait="yes" />
+			</Component>
 		</ComponentGroup>
 	</Fragment>
 </Wix>
